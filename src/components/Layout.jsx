@@ -1,0 +1,1 @@
+export default function Layout({ children }) { return <div className="container mx-auto p-4 md:p-8">{children}</div>; }
