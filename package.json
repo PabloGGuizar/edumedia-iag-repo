@@ -2,16 +2,20 @@
   "name": "temp-vite-project",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://PabloGGuizar.github.io/edumedia-iag-repo",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.12",
     "chart.js": "^4.5.0",
+    "gh-pages": "^6.3.0",
     "papaparse": "^5.5.3",
     "postcss": "^8.5.6",
     "react": "^19.1.1",
