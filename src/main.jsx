@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
       <FavoritesProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/edumedia-iag-repo/">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/stats" element={<StatsPage />} />
