@@ -225,15 +225,15 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row gap-4 items-center mb-4">
             <SearchBar query={searchQuery} onQueryChange={setSearchQuery} />
             <div className="flex-shrink-0 flex gap-2 w-full md:w-auto">
-                <button onClick={() => setShowFavoritesOnly(!showFavoritesOnly)} title="Mostrar solo favoritos" className={`action-btn flex flex-grow justify-center items-center gap-2 bg-white text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 shadow-sm border border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-600 ${showFavoritesOnly ? 'active' : ''}`}>
+                <button onClick={() => setShowFavoritesOnly(!showFavoritesOnly)} title="Mostrar solo favoritos" className={`action-btn flex flex-grow justify-center items-center gap-2 bg-surface text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-surface shadow-sm border border-muted     ${showFavoritesOnly ? 'active' : ''}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     <span className="hidden sm:inline">Favoritos</span>
                 </button>
-                <button onClick={() => setShowFilterPanel(!showFilterPanel)} title="Mostrar/ocultar filtros" className={`action-btn flex flex-grow justify-center items-center gap-2 bg-white text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 shadow-sm border border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-600 ${showFilterPanel ? 'active' : ''}`}>
+                <button onClick={() => setShowFilterPanel(!showFilterPanel)} title="Mostrar/ocultar filtros" className={`action-btn flex flex-grow justify-center items-center gap-2 bg-surface text-slate-700 font-semibold py-2 px-4 rounded-lg hover:bg-surface shadow-sm border border-muted     ${showFilterPanel ? 'active' : ''}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
                     <span>Filtros</span>
                 </button>
-                <button onClick={() => setIsHelpModalOpen(true)} title="Ayuda" className="flex-shrink-0 flex justify-center items-center bg-gray-500 text-white font-semibold p-2.5 rounded-lg hover:bg-gray-600 transition shadow-sm dark:bg-gray-600 dark:hover:bg-gray-500">
+                <button onClick={() => setIsHelpModalOpen(true)} title="Ayuda" className="flex-shrink-0 flex justify-center items-center bg-slate-500 text-white font-semibold p-2.5 rounded-lg hover:bg-slate-600 transition shadow-sm  dark:hover:bg-slate-500">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                 </button>
             </div>
@@ -252,16 +252,16 @@ export default function HomePage() {
         <ActiveFilters activeFilters={activeFilters} onRemoveFilter={handleFilterChange} />
 
         <div className="flex items-center justify-between mb-4">
-            <div className="text-sm text-gray-600 font-medium dark:text-gray-400">
+            <div className="text-sm text-slate-500 font-medium ">
                 Mostrando {appsToDisplay.length} de {allApps.length} aplicaciones.
             </div>
             <div className="flex items-center gap-2">
-                 <button onClick={handleShare} className="text-sm text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-1 dark:text-blue-400 dark:hover:text-blue-300">
+                 <button onClick={handleShare} className="text-sm font-semibold flex items-center gap-1 text-[var(--accent)] hover:text-[var(--accent-dark)]  ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
                     Compartir Filtros
                 </button>
-                <label htmlFor="items-per-page-selector" className="text-sm font-medium text-gray-600 dark:text-gray-400 ml-4">Mostrar:</label>
-                <select id="items-per-page-selector" value={itemsPerPage} onChange={(e) => setItemsPerPage(e.target.value === 'all' ? 'all' : Number(e.target.value))} className="text-sm rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-1 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+                <label htmlFor="items-per-page-selector" className="text-sm font-medium text-muted ml-4">Mostrar:</label>
+                <select id="items-per-page-selector" value={itemsPerPage} onChange={(e) => setItemsPerPage(e.target.value === 'all' ? 'all' : Number(e.target.value))} className="text-sm rounded-lg border-muted shadow-sm focus:border-[var(--link)] focus:ring-[var(--link)] py-1   ">
                     <option value={10}>10</option>
                     <option value={25}>25</option>
                     <option value={50}>50</option>

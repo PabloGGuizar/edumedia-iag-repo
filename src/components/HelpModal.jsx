@@ -2,11 +2,11 @@ export default function HelpModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full h-[85vh] flex flex-col dark:bg-gray-800" onClick={(e) => e.stopPropagation()}>
-        <div className="flex-shrink-0 p-3 border-b flex justify-end items-center relative dark:border-gray-700">
-          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 absolute left-1/2 -translate-x-1/2">Ayuda</h3>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white text-3xl font-bold p-1 leading-none">&times;</button>
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50" onClick={onClose}>
+      <div className="bg-surface rounded-lg shadow-xl max-w-2xl w-full h-[85vh] flex flex-col " onClick={(e) => e.stopPropagation()}>
+        <div className="flex-shrink-0 p-3 border-b flex justify-end items-center relative ">
+          <h3 className="text-xl font-bold text-primary absolute left-1/2 -translate-x-1/2">Ayuda</h3>
+          <button onClick={onClose} className="text-muted hover:text-slate-800  dark:hover:text-white text-3xl font-bold p-1 leading-none">&times;</button>
         </div>
         <div className="overflow-auto p-6">
             <h3>Guía de uso del repositorio</h3>
@@ -73,7 +73,7 @@ export default function HelpModal({ isOpen, onClose }) {
                 <p>Algunas de las aplicaciones de este repositorio integran Inteligencia Artificial. Por este motivo, su utilización por parte de menores de edad debe estar siempre acompañada y supervisada por un adulto (docente o tutor legal) que pueda guiarles y asegurar un uso correcto y seguro.</p>
             </div>
 
-            <p className="text-center mt-8 text-gray-500">
+            <p className="text-center mt-8 text-muted">
                 ¡Esperamos que encuentres herramientas útiles para tus clases!
             </p>
         </div>

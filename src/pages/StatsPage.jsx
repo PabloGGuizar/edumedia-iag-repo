@@ -136,28 +136,28 @@ export default function StatsPage() {
     return (
         <Layout>
             <header className="text-center mb-10">
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-2">Análisis de Aplicaciones Educativas</h1>
-                <p className="text-lg text-gray-600 dark:text-gray-300">Visualización interactiva de datos del repositorio.</p>
+                <h1 className="text-4xl md:text-5xl font-bold text-primary mb-2">Análisis de Aplicaciones Educativas</h1>
+                <p className="text-lg text-slate-500 ">Visualización interactiva de datos del repositorio.</p>
             </header>
 
             <main>
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                    <div className="stat-card bg-white dark:bg-gray-800 p-6 rounded-xl text-center shadow-sm">
-                        <h3 className="text-lg font-semibold text-gray-500 dark:text-gray-400 mb-2">Apps Activas</h3>
+                    <div className="stat-card bg-surface p-6 rounded-xl text-center shadow-sm">
+                        <h3 className="text-lg font-semibold text-muted  mb-2">Apps Activas</h3>
                         <p className="text-4xl font-bold text-emerald-500">{chartData.totalApps}</p>
                     </div>
-                    <div className="stat-card bg-white dark:bg-gray-800 p-6 rounded-xl text-center shadow-sm">
-                        <h3 className="text-lg font-semibold text-gray-500 dark:text-gray-400 mb-2">Total de Áreas</h3>
+                    <div className="stat-card bg-surface p-6 rounded-xl text-center shadow-sm">
+                        <h3 className="text-lg font-semibold text-muted  mb-2">Total de Áreas</h3>
                         <p className="text-4xl font-bold text-emerald-500">{Object.keys(chartData.areasData).length}</p>
                     </div>
-                    <div className="stat-card bg-white dark:bg-gray-800 p-6 rounded-xl text-center shadow-sm">
-                        <h3 className="text-lg font-semibold text-gray-500 dark:text-gray-400 mb-2">Tipos de Licencia</h3>
+                    <div className="stat-card bg-surface p-6 rounded-xl text-center shadow-sm">
+                        <h3 className="text-lg font-semibold text-muted  mb-2">Tipos de Licencia</h3>
                         <p className="text-4xl font-bold text-emerald-500">{Object.keys(chartData.licenciaData).length}</p>
                     </div>
                 </section>
 
                 <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div className="chart-container bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+                    <div className="chart-container bg-surface p-6 rounded-xl shadow-sm">
                         <h2 className="text-xl font-semibold mb-4 text-center">Plataforma de creación</h2>
                         <Doughnut 
                             data={{
@@ -170,7 +170,7 @@ export default function StatsPage() {
                             options={commonPieOptions}
                         />
                     </div>
-                    <div className="chart-container bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+                    <div className="chart-container bg-surface p-6 rounded-xl shadow-sm">
                         <h2 className="text-xl font-semibold mb-4 text-center">Tipo de recurso</h2>
                         <Doughnut 
                             data={{
@@ -183,7 +183,7 @@ export default function StatsPage() {
                             options={commonPieOptions}
                         />
                     </div>
-                    <div className="chart-container bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+                    <div className="chart-container bg-surface p-6 rounded-xl shadow-sm">
                         <h2 className="text-xl font-semibold mb-4 text-center">Licencia de uso</h2>
                         <Doughnut 
                             data={{
@@ -196,7 +196,7 @@ export default function StatsPage() {
                             options={commonPieOptions}
                         />
                     </div>
-                    <div className="chart-container lg:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+                    <div className="chart-container lg:col-span-2 bg-surface p-6 rounded-xl shadow-sm">
                         <h2 className="text-xl font-semibold mb-4 text-center">Área o áreas de conocimiento</h2>
                         <Bar 
                             data={{
@@ -210,7 +210,7 @@ export default function StatsPage() {
                             options={{ indexAxis: 'y', ...commonPieOptions }}
                         />
                     </div>
-                    <div className="chart-container lg:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+                    <div className="chart-container lg:col-span-2 bg-surface p-6 rounded-xl shadow-sm">
                         <h2 className="text-xl font-semibold mb-4 text-center">Nivel o niveles educativos</h2>
                         <Bar 
                             data={{
@@ -229,3 +229,4 @@ export default function StatsPage() {
         </Layout>
     );
 }
+

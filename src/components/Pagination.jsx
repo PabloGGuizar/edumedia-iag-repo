@@ -13,7 +13,7 @@ export default function Pagination({ currentPage, totalItems, itemsPerPage, onPa
       >
         Anterior
       </button>
-      <span className="text-sm text-gray-600 dark:text-gray-400">
+      <span className="text-sm text-muted">
         Página {currentPage} de {totalPages}
       </span>
       <button 

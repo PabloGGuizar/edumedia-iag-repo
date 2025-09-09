@@ -14,13 +14,13 @@ export default function FilterPanel({ categories, allApps, activeFilters, onFilt
   }, [categories, allApps]);
 
   return (
-    <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm mb-8 border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <div className="bg-surface p-4 sm:p-6 rounded-xl shadow-sm mb-8 border border-muted  ">
       <div className="space-y-4">
         {categories.map(cat => {
           if (!filterOptions[cat.id]) return null;
           return (
             <details key={cat.id} className="group" open>
-              <summary className="flex items-center gap-2 font-semibold text-lg cursor-pointer text-gray-800 dark:text-gray-100">
+              <summary className="flex items-center gap-2 font-semibold text-lg cursor-pointer text-primary">
                 <span dangerouslySetInnerHTML={{ __html: cat.icon }}></span>
                 {cat.name}
                 <span className="ml-auto transition-transform duration-200 transform group-open:rotate-90">
@@ -44,8 +44,8 @@ export default function FilterPanel({ categories, allApps, activeFilters, onFilt
           )
         })}
       </div>
-      <div className="mt-6 border-t pt-4 flex justify-end dark:border-gray-700">
-        <button onClick={onClearFilters} className="w-full sm:w-auto px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition dark:bg-gray-500 dark:hover:bg-gray-400">Limpiar Filtros</button>
+      <div className="mt-6 border-t border-muted pt-4 flex justify-end ">
+        <button onClick={onClearFilters} className="w-full sm:w-auto px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition dark:bg-slate-500 dark:hover:bg-slate-400">Limpiar Filtros</button>
       </div>
     </div>
   );

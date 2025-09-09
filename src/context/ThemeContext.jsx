@@ -6,16 +6,18 @@ export function ThemeProvider({ children }) {
     const [theme, setTheme] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) return savedTheme;
-        return 'system';
+        return 'light';
     });
 
     useEffect(() => {
         const root = window.document.documentElement;
-        const isDark = 
-            theme === 'dark' || 
+        const body = window.document.body;
+        const isDark =
+            theme === 'dark' ||
             (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        
+
         root.classList.toggle('dark', isDark);
+        body?.classList.toggle('dark', isDark);
         localStorage.setItem('theme', theme);
 
     }, [theme]);
@@ -26,7 +28,9 @@ export function ThemeProvider({ children }) {
         const handleChange = () => {
             if (theme === 'system') {
                 const root = window.document.documentElement;
+                const body = window.document.body;
                 root.classList.toggle('dark', mediaQuery.matches);
+                body?.classList.toggle('dark', mediaQuery.matches);
             }
         };
 
