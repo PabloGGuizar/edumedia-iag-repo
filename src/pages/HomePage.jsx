@@ -13,19 +13,20 @@ import { filterCategories } from '../config';
 import { useFavorites } from '../context/FavoritesContext';
 
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuzC6iDCGInzgTXLn7ODu_i3XlHqqVUxpd0jJ42ZmrkVb89l59zi_UXEK0MGRWv4CkoDurlGGdF9qv/pub?output=csv';
+// Requerimos correo para validar ediciones/borrados por autor
 const REQUIRED_FIELDS = ['correo_autor', 'nombre_autor', 'titulo_app', 'url_app'];
 
 const COLUMN_NAME_MAP = {
     'Marca temporal': 'timestamp',
     'Dirección de correo electrónico': 'correo_autor',
-    '¿QUIERES ELIMINAR UN REGISTRO?\nMarca la casilla y escribe más abajo la URL que tiene tu aplicación. En el resto de campos, escribe cualquier cosa y envía el formulario.\nIMPORTANTE: Si solo quieres rectificar un registro, no marques esta casilla, haz lo que se  indica a continuación': 'eliminar_registro',
+    '¿QUIERES ELIMINAR UN REGISTRO?\nMarca la casilla y escribe más abajo la URL que tiene tu recurso. En el resto de campos, escribe cualquier cosa y envía el formulario.\nIMPORTANTE: Si solo quieres rectificar un registro, no marques esta casilla, haz lo que se  indica a continuación': 'eliminar_registro',
     'Tu nombre (Autor/a de la aplicación)\nIndica tu nombre o el alias con el que quieres que se te reconozca. Este nombre será público y aparecerá junto a tu aplicación. Si hay más de un autor o autora, sepáralos por comas': 'nombre_autor',
     'Título del recurso multimedia\nEl nombre que verán los usuarios en el repositorio.': 'titulo_app',
-    'Enlace (URL) a la aplicación\nPega aquí el enlace completo y público. Es muy importante que verifiques que funciona correctamente para cualquier persona.': 'url_app',
+    'Enlace (URL) al recurso\nPega aquí el enlace completo y público. Es muy importante que verifiques que funciona correctamente para cualquier persona.': 'url_app',
     'Descripción breve\n¿Qué problema resuelve? ¿Qué se aprende con ella? ¿Cómo se usa? Aporta los detalles necesarios para que otra persona entienda su valor y su propósito educativo.': 'descripcion_app',
     'Herramientas usadas\nSelecciona las herramientas que usaste para crear la aplicación.': 'plataforma',
     'Tipo de recurso\n¿Qué formato tiene el recurso? Esto ayuda a filtrar por tipo de actividad. ': 'tipo_recurso',
-    'Nivel o niveles educativos\nMarca todos los niveles para los que consideres que tu aplicación es adecuada. Puedes seleccionar más de uno.': 'nivel_educativo',
+    'Nivel o niveles educativos\nMarca todos los niveles para los que consideres que tu recurso es adecuado. Puedes seleccionar más de uno.': 'nivel_educativo',
     'Área o áreas de conocimiento\nElige las áreas temáticas que cubre tu recurso. Puedes marcar varias opciones.': 'area_conocimiento',
     'Palabras clave (opcional)\nEscribe un máximo de 10 palabras clave separadas por comas (ej: sistema solar, planetas, astronomía). Esto mejora mucho las búsquedas.': 'palabras_clave',
     'Licencia de uso\nIndica los permisos que otorgas sobre tu obra. Si no estás seguro, Creative Commons BY-SA es una buena opción para compartir en educación.': 'licencia',
@@ -33,33 +34,100 @@ const COLUMN_NAME_MAP = {
 
 
 function processData(data) {
-    const mappedData = data.map(row => {
+    const normalizeString = (str) => str ? str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : '';
+    const normalizeHeader = (str) => normalizeString(String(str))
+        .replace(/^\uFEFF/, '') // quita BOM si existe
+        .replace(/\s+/g, ' ')
+        .trim();
+
+    // Lookup exact normalized header -> target key
+    const headerLookup = new Map(
+        Object.entries(COLUMN_NAME_MAP).map(([k, v]) => [normalizeHeader(k), v])
+    );
+
+    // Heuristic token-based mapping by includes
+    const inferKeyFromHeader = (h) => {
+        // order matters: use more specific checks first
+        if (h.includes('eliminar') && h.includes('registro')) return 'eliminar_registro';
+        if ((h.includes('marca') && h.includes('temporal')) || h === 'timestamp') return 'timestamp';
+        if ((h.includes('correo') || h.includes('email') || h.includes('electr'))) return 'correo_autor';
+        if ((h.includes('tu nombre') || (h.includes('autor') && h.includes('aplicacion')) || (h.includes('autor') && h.includes('recurso')))) return 'nombre_autor';
+        if (h.includes('titulo') && (h.includes('recurso') || h.includes('multimedia'))) return 'titulo_app';
+        if ((h.includes('enlace') || h.includes('url')) && (h.includes('recurso') || h.includes('aplicacion'))) return 'url_app';
+        if (h.includes('descripcion') && h.includes('breve')) return 'descripcion_app';
+        if (h.includes('herramientas') || h.includes('plataforma')) return 'plataforma';
+        if (h.includes('tipo') && h.includes('recurso')) return 'tipo_recurso';
+        if (h.includes('nivel') && h.includes('educativ')) return 'nivel_educativo';
+        if (h.includes('area') && h.includes('conocimiento')) return 'area_conocimiento';
+        if (h.includes('palabras') && h.includes('clave')) return 'palabras_clave';
+        if (h.includes('licencia')) return 'licencia';
+        return undefined;
+    };
+
+    const targetKeys = new Set(Object.values(COLUMN_NAME_MAP));
+
+    const mappedData = data.map((row, idx) => {
         const newRow = {};
-        for (const oldKey in COLUMN_NAME_MAP) {
-            const newKey = COLUMN_NAME_MAP[oldKey];
-            newRow[newKey] = row[oldKey] ? row[oldKey].trim() : '';
-        }
+        targetKeys.forEach(k => { newRow[k] = ''; });
+
+        Object.entries(row).forEach(([oldKey, value]) => {
+            const nh = normalizeHeader(oldKey);
+            let mappedKey = headerLookup.get(nh);
+            if (!mappedKey) mappedKey = inferKeyFromHeader(nh);
+            if (mappedKey) {
+                newRow[mappedKey] = value ? String(value).trim() : '';
+            }
+        });
+
+        // Log for first few rows if nothing mapped (debug aid)
+        // No logging in production build
         return newRow;
     });
 
+    // Determinar el correo del autor "propietario" (primer alta no marcado como eliminación) por URL
+    const ownerByUrl = new Map(); // url -> { ts, email }
+    mappedData.forEach(app => {
+        if (!app.url_app) return;
+        if (normalizeString(app.eliminar_registro) === 'si') return;
+        const url = app.url_app.trim();
+        const ts = new Date(app.timestamp).getTime();
+        const emailNorm = normalizeString(app.correo_autor || '');
+        if (!emailNorm) return; // solo considerar altas con correo válido
+        const prev = ownerByUrl.get(url);
+        if (!prev || ts < prev.ts) {
+            ownerByUrl.set(url, { ts, email: emailNorm });
+        }
+    });
 
+    // Cortes de borrado validados por coincidencia de correo con el propietario
     const deleteCutoff = new Map();
-    const normalizeString = (str) => str ? str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : '';
 
     mappedData.forEach(app => {
         if (normalizeString(app.eliminar_registro) === 'si' && app.url_app) {
             const url = app.url_app.trim();
+            const owner = ownerByUrl.get(url);
+            if (!owner) return; // no hay alta previa, ignorar petición de borrado
+            const delEmail = normalizeString(app.correo_autor || '');
+            if (!delEmail || delEmail !== owner.email) return; // correo no coincide con el propietario vigente
             const ts = new Date(app.timestamp).getTime();
             const prev = deleteCutoff.get(url) ?? -Infinity;
             if (ts > prev) deleteCutoff.set(url, ts);
         }
     });
 
+    // Aceptar solo versiones (altas/ediciones) del propietario y posteriores a un borrado válido
     const appsWithoutDeleted = mappedData.filter(app => {
-        if (!app.url_app) return true;
-        const cut = deleteCutoff.get(app.url_app.trim());
-        if (cut === undefined) return true;
-        return new Date(app.timestamp).getTime() > cut;
+        if (!app.url_app) return false;
+        const url = app.url_app.trim();
+        // Nunca consideramos filas de borrado para mostrar
+        if (normalizeString(app.eliminar_registro) === 'si') return false;
+        const owner = ownerByUrl.get(url);
+        if (!owner) return false;
+        const emailNorm = normalizeString(app.correo_autor || '');
+        if (!emailNorm || emailNorm !== owner.email) return false;
+        const cut = deleteCutoff.get(url);
+        if (cut !== undefined && new Date(app.timestamp).getTime() <= cut) return false;
+        return true;
     });
 
     const validApps = appsWithoutDeleted.filter(app => {
@@ -114,8 +182,10 @@ export default function HomePage() {
         download: true, header: true, skipEmptyLines: true,
         complete: (results) => {
             try {
+                // Logs eliminados
                 const processedApps = processData(results.data);
                 setAllApps(processedApps);
+                // Logs eliminados
                 // Apply filters from URL after data is loaded
                 const params = new URLSearchParams(window.location.search);
                 const newFilters = { ...activeFilters };
@@ -133,13 +203,11 @@ export default function HomePage() {
 
                 setLoading(false);
             } catch (e) {
-                console.error("Error processing data:", e);
                 setError('No se pudieron procesar los datos.');
                 setLoading(false);
             }
         },
         error: (error) => {
-            console.error("Error al cargar o parsear el CSV:", error);
             setError('No se pudieron cargar los datos del repositorio.');
             setLoading(false);
         }

@@ -219,12 +219,6 @@ html.dark .theme-btn.active {
 }
 
 
-#visit-box {
-  text-align: center;
-  font-size: 0.9rem;
-  margin-top: 0.1rem;
-  margin-bottom: 2.5rem;
-}
 #pagination-container button {
     padding: 0.5rem 1rem;
     border: 1px solid var(--border-2);
@@ -250,17 +244,7 @@ html.dark #pagination-container button:hover:not(:disabled) {
     font-size: 0.875rem;
     color: var(--text-muted);
 }
-#visit-box a {
-    color: inherit;
-    text-decoration: none;
-}
-#visit-box a:hover {
-    text-decoration: underline;
-    color: var(--link);
-}
-html.dark #visit-box a:hover {
-    color: var(--link-hover);
-}
+/* estilos del antiguo visit-box eliminados */
 
 /* Enlaces por defecto usan color de marca */
 a, footer a {
@@ -284,53 +268,4 @@ a:hover, footer a:hover {
 .themed-input::placeholder {
   color: var(--text-muted);
 }
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-.modal-content {
-    position: relative;
-    background-color: var(--card-bg);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    width: 90%;
-    height: 90%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-}
-html.dark .modal-content {
-    background-color: var(--card-bg);
-}
-.modal-close-btn {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    background: #333;
-    color: white;
-    border: 2px solid white;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-    cursor: pointer;
-    z-index: 1010;
-}
-.modal-close-btn:hover { background: var(--accent); }
-#modal-iframe {
-    flex-grow: 1;
-    border: none;
-    width: 100%;
-    height: 100%;
-}
+/* estilos de modal antiguo eliminados */

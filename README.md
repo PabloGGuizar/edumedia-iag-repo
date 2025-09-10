@@ -1,12 +1,31 @@
-# React + Vite
+# Repositorio de EduMedia-IAG
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Repositorio multimedia con recursos educativos para el aprendizaje.
 
-Currently, two official plugins are available:
+## Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este es un repositorio de recursos multimedia de EduMedia-IAG, un portal de recursos educativos para el aprendizaje.
 
-## Expanding the ESLint configuration
+## Empezando
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Para empezar a usar este repositorio, clónalo en tu máquina local:
+
+```bash
+git clone https://github.com/user/edumedia-iag-repo.git
+```
+
+## Instalación
+
+Para instalar las dependencias, ejecuta:
+
+```bash
+npm install
+```
+
+## Uso
+
+Para iniciar el servidor de desarrollo, ejecuta:
+
+```bash
+npm run dev
+```

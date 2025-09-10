@@ -1,5 +1,6 @@
 {
-  "name": "temp-vite-project",
+  "name": "edumedia-iag-repo",
+  "description": "Repositorio multimedia con recursos educativos para el aprendizaje.",
   "private": true,
   "version": "0.0.0",
   "homepage": "https://PabloGGuizar.github.io/edumedia-iag-repo",

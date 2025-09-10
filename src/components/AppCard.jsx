@@ -55,7 +55,7 @@ export default function AppCard({ app }) {
         </div>
       </div>
       <div className="p-5 bg-surface /50 mt-auto">
-        <a href={app.url_app} target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-primary-dark text-white font-bold py-2.5 px-4 rounded-lg hover:bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--accent)] dark:focus:ring-[var(--accent-dark)]">Visitar aplicación</a>
+        <a href={app.url_app} target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-primary-dark text-white font-bold py-2.5 px-4 rounded-lg hover:bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--accent)] dark:focus:ring-[var(--accent-dark)]">Visitar recurso</a>
       </div>
     </div>
   );

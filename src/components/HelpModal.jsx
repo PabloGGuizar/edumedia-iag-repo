@@ -11,9 +11,9 @@ export default function HelpModal({ isOpen, onClose }) {
         <div className="overflow-auto p-6">
             <h3>Guía de uso del repositorio</h3>
 
-            <h4>1. Encontrar la aplicación perfecta</h4>
+            <h4>1. Encontrar el recurso perfecto</h4>
             <ul>
-                <li><strong>La búsqueda principal:</strong> Es la barra de búsqueda grande que ves al principio. Puedes escribir cualquier término (el nombre de un autor, una palabra del título, un concepto como “gamificación”, etc.) y la aplicación buscará en todos los campos de todas las tarjetas.</li>
+                <li><strong>La búsqueda principal:</strong> Es la barra de búsqueda grande que ves al principio. Puedes escribir cualquier término (el nombre de un autor, una palabra del título, un concepto como “gamificación”, etc.) y el buscador buscará en todos los campos de todas las tarjetas.</li>
                 <li><strong>Filtrado detallado:</strong> Para búsquedas más precisas, el panel de filtros es tu mejor aliado.
                 <ul>
                     <li>Haz clic en el botón <em>Filtros</em> para mostrarlo u ocultarlo.</li>
@@ -22,7 +22,7 @@ export default function HelpModal({ isOpen, onClose }) {
                     <li>Usa el botón <em>“Limpiar Filtros”</em> para eliminar la selección de este panel sin afectar a la búsqueda principal.</li>
                 </ul>
                 </li>
-                <li><strong>Filtros rápidos desde las tarjetas:</strong> Dentro de cada tarjeta de aplicación, verás que el nombre del autor, el nivel, el área y las palabras clave son enlaces. Si haces clic en uno de ellos, se aplicará ese filtro automáticamente.</li>
+                <li><strong>Filtros rápidos desde las tarjetas:</strong> Dentro de cada tarjeta de recurso, verás que el nombre del autor, el nivel, el área y las palabras clave son enlaces. Si haces clic en uno de ellos, se aplicará ese filtro automáticamente.</li>
             </ul>
 
             <h4>2. Gestionar tus preferencias y búsquedas</h4>
@@ -31,7 +31,7 @@ export default function HelpModal({ isOpen, onClose }) {
                 <ul>
                     <li>Haz clic en el icono del corazón (♡) en la esquina superior derecha de la tarjeta. Se volverá rojo (♥) y se guardará en tus favoritos.</li>
                     <li>Los favoritos se guardan localmente en tu navegador.</li>
-                    <li>Para ver solo tus aplicaciones favoritas, pulsa el botón <em>Favoritos</em> (con el icono del corazón) al lado de la barra de búsqueda. Vuelve a pulsarlo para ver todas las aplicaciones.</li>
+                    <li>Para ver solo tus recursos favoritos, pulsa el botón <em>Favoritos</em> (con el icono del corazón) al lado de la barra de búsqueda. Vuelve a pulsarlo para ver todos los recursos.</li>
                 </ul>
                 </li>
                 <li><strong>Compartir tus búsquedas:</strong>
@@ -41,28 +41,28 @@ export default function HelpModal({ isOpen, onClose }) {
                 </li>
                 <li><strong>Limpiar todo:</strong>
                 <ul>
-                    <li>El botón <em>“Limpiar todo”</em> restablece la página: borra la búsqueda, desactiva filtros y muestra todas las aplicaciones.</li>
+                    <li>El botón <em>“Limpiar todo”</em> restablece la página: borra la búsqueda, desactiva filtros y muestra todos los recursos.</li>
                 </ul>
                 </li>
             </ul>
 
-            <h4>3. Entendiendo una tarjeta de aplicación</h4>
+            <h4>3. Entendiendo una tarjeta de recurso</h4>
             <ul>
-                <li><strong>Borde de color:</strong> Indica la plataforma principal con la que se ha creado la aplicación (por ejemplo, morado para Gemini, naranja para Claude, etc.).</li>
-                <li><strong>Título y autor:</strong> El nombre de la aplicación y quién la ha creado.</li>
+                <li><strong>Borde de color:</strong> Indica la plataforma principal con la que se ha creado el recurso (por ejemplo, morado para Gemini, naranja para Claude, etc.).</li>
+                <li><strong>Título y autor:</strong> El nombre del recurso y quién la ha creado.</li>
                 <li><strong>Nivel y área:</strong> Campos educativos a los que se dirige. Son filtros rápidos.</li>
-                <li><strong>Palabras clave:</strong> Etiquetas que describen la aplicación. También son filtros rápidos.</li>
-                <li><strong>Visitar aplicación:</strong> Botón principal para abrir la aplicación en otra pestaña.</li>
+                <li><strong>Palabras clave:</strong> Etiquetas que describen el recurso. También son filtros rápidos.</li>
+                <li><strong>Visitar aplicación:</strong> Botón principal para abrir el recurso en otra pestaña.</li>
             </ul>
 
-            <h4>4. ¿Quieres añadir tu propia aplicación?</h4>
-            <p>Este es un proyecto colaborativo. Si has creado una aplicación y quieres que aparezca aquí, solo tienes que unirte al grupo de Telegram <a href="#" target="_blank" rel="noreferrer">EduMedia-IAG</a> y seguir las instrucciones del mensaje fijado para rellenar el formulario.</p>
+            <h4>4. ¿Quieres añadir tu propio recurso?</h4>
+            <p>Este es un proyecto colaborativo. Si has creado un recurso y quieres que aparezca aquí, solo tienes que unirte al grupo de Telegram <a href="#" target="_blank" rel="noreferrer">EduMedia-IAG</a> y seguir las instrucciones del mensaje fijado para rellenar el formulario.</p>
             
-            <h4>5. Modificar o eliminar una aplicación</h4>
-            <p>Los autores pueden modificar o eliminar sus entradas en cualquier momento. Para ello, deben rellenar de nuevo el formulario de alta de aplicaciones.</p>
+            <h4>5. Modificar o eliminar un recurso</h4>
+            <p>Los autores pueden modificar o eliminar sus entradas en cualquier momento. Para ello, deben rellenar de nuevo el formulario de alta de recursos.</p>
             <ul>
-                <li><strong>Para modificar una aplicación:</strong> es necesario completar todos los campos del formulario de nuevo. El sistema identifica las aplicaciones por su URL, por lo que la entrada más reciente con una URL determinada reemplazará a la anterior. Si lo que quieres es cambiar la URL de tu aplicación, deberás asegurarte de que el <strong>título de la aplicación</strong> sea exactamente el mismo que en la entrada original para que el sistema pueda encontrarla y reemplazarla correctamente.</li>
-                <li><strong>Para eliminar una aplicación:</strong> bastará con que rellenes el campo de la URL que usaste para dar de alta el recurso y marques la casilla de eliminación. El resto de campos no tienen importancia.</li>
+                <li><strong>Para modificar un recurso:</strong> es necesario completar todos los campos del formulario de nuevo. El sistema identifica los recursos por su URL, por lo que la entrada más reciente con una URL determinada reemplazará a la anterior. Si lo que quieres es cambiar la URL de tu recurso, deberás asegurarte de que el <strong>título del recurso</strong> sea exactamente el mismo que en la entrada original para que el sistema pueda encontrarla y reemplazarla correctamente.</li>
+                <li><strong>Para eliminar un recurso:</strong> bastará con que rellenes el campo de la URL que usaste para dar de alta el recurso y marques la casilla de eliminación. El resto de campos no tienen importancia.</li>
             </ul>
 
             <h4>6. Principios de uso y responsabilidad</h4>
@@ -70,7 +70,7 @@ export default function HelpModal({ isOpen, onClose }) {
 
             <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 mt-8">
                 <p className="font-bold">Aviso importante</p>
-                <p>Algunas de las aplicaciones de este repositorio integran Inteligencia Artificial. Por este motivo, su utilización por parte de menores de edad debe estar siempre acompañada y supervisada por un adulto (docente o tutor legal) que pueda guiarles y asegurar un uso correcto y seguro.</p>
+                <p>Algunos de los recursos de este repositorio integran Inteligencia Artificial. Por este motivo, su utilización por parte de menores de edad debe estar siempre acompañada y supervisada por un adulto (docente o tutor legal) que pueda guiarles y asegurar un uso correcto y seguro.</p>
             </div>
 
             <p className="text-center mt-8 text-muted">

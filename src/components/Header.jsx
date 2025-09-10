@@ -24,7 +24,7 @@ export default function Header() {
           <div className="text-center sm:text-left">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">Repositorio de aplicaciones educativas</h1>
             <p className="mt-2 text-lg text-muted">
-              Una colección de aplicaciones y recursos educativos creados por la comunidad
+              Una colección de recursos multimedia educativos creados por la comunidad
               <a href="#" target="_blank" rel="noreferrer" className="ml-1 font-semibold text-[var(--accent)] hover:text-[var(--accent-dark)] hover:underline">EduMedia-IAG</a>.
             </p>
           </div>

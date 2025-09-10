@@ -5,8 +5,6 @@ import { ThemeProvider } from './context/ThemeContext'
 import { FavoritesProvider } from './context/FavoritesContext'
 
 import HomePage from './pages/HomePage'
-import StatsPage from './pages/StatsPage'
-import VisitsPage from './pages/VisitsPage'
 
 import './index.css'
 import './estilos.css'
@@ -18,8 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter basename="/edumedia-iag-repo/">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/stats" element={<StatsPage />} />
-            <Route path="/visits" element={<VisitsPage />} />
+            {/** Estadísticas deshabilitadas */}
           </Routes>
         </BrowserRouter>
       </FavoritesProvider>
