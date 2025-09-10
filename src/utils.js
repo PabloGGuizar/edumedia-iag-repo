@@ -13,12 +13,12 @@ export function getPlatformStyle(platform) {
     return STYLES[key] || STYLES.Default;
 }
 
-export function getResourceStyle(tipo) {
+export function getResourceGradient(tipo) {
     const t = (tipo || '').toLowerCase();
-    if (t.includes('imagen') || t.includes('image')) return 'border-fuchsia-500';
-    if (t.includes('video')) return 'border-rose-500';
-    if (t.includes('audio')) return 'border-emerald-500';
-    return 'border-slate-400';
+    if (t.includes('imagen') || t.includes('image')) return 'bg-gradient-to-r from-fuchsia-500 to-fuchsia-300';
+    if (t.includes('video')) return 'bg-gradient-to-r from-rose-500 to-rose-300';
+    if (t.includes('audio')) return 'bg-gradient-to-r from-emerald-500 to-emerald-300';
+    return 'bg-gradient-to-r from-slate-400 to-slate-300';
 }
 
 export function createFilterLink(text, category) {

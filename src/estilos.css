@@ -43,7 +43,6 @@ html.dark body { background-color: var(--bg); color: var(--text); }
 
 .card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border-top-width: 4px;
     background-color: var(--card-bg);
 }
 .card:hover {

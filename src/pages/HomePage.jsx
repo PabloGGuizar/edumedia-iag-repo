@@ -54,6 +54,8 @@ function processData(data) {
         if ((h.includes('tu nombre') || (h.includes('autor') && h.includes('aplicacion')) || (h.includes('autor') && h.includes('recurso')))) return 'nombre_autor';
         if (h.includes('titulo') && (h.includes('recurso') || h.includes('multimedia'))) return 'titulo_app';
         if ((h.includes('enlace') || h.includes('url')) && (h.includes('recurso') || h.includes('aplicacion'))) return 'url_app';
+        // campo opcional: URL de imagen de la tarjeta
+        if ((h.includes('imagen') || h.includes('image')) && (h.includes('enlace') || h.includes('url'))) return 'imagen_url';
         if (h.includes('descripcion') && h.includes('breve')) return 'descripcion_app';
         if (h.includes('herramientas') || h.includes('plataforma')) return 'plataforma';
         if (h.includes('tipo') && h.includes('recurso')) return 'tipo_recurso';
